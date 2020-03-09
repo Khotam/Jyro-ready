@@ -6,12 +6,15 @@ using System.Threading.Tasks;
 
 namespace Jyro.DAL
 {
+    // Blueprint class for creating Sprint instances
     public class Sprint
     {
+        // Creating private properties _name, _noOfDevelopers for encapsulation and using validation for user input as well
         private string _name;
         private int _noOfDevelopers;
 
-        public enum SprintStatuses
+        // Create SprintStatuses enumerable for easily change whenever Complete button is clicked in SprintListForm.cs
+        public enum SprintStatuses 
         {
             Planned,
             Complete
@@ -19,6 +22,7 @@ namespace Jyro.DAL
 
         public int Id { get; set; }
 
+        // Validation for earlier created private properties _name, _noOfDevelopers
         public string Name
         {
             get => _name;

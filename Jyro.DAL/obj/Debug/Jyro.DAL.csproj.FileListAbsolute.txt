@@ -24,3 +24,12 @@ C:\Users\user\Desktop\FunPro\Jyro-CW-master\Jyro.DAL\bin\Debug\Jyro.DAL.dll
 C:\Users\user\Desktop\FunPro\Jyro-CW-master\Jyro.DAL\bin\Debug\Jyro.DAL.pdb
 C:\Users\user\Desktop\FunPro\Jyro-CW-master\Jyro.DAL\bin\Debug\System.Data.SqlServerCe.dll
 C:\Users\user\Desktop\FunPro\Jyro-CW-master\Jyro.DAL\obj\Debug\Jyro.DAL.csproj.CopyComplete
+\\peter\ZDrive\00007717\Desktop\Jyro-ready\Jyro.DAL\bin\Debug\Jyro.DAL.dll.config
+\\peter\ZDrive\00007717\Desktop\Jyro-ready\Jyro.DAL\bin\Debug\Jyro.DAL.dll
+\\peter\ZDrive\00007717\Desktop\Jyro-ready\Jyro.DAL\bin\Debug\Jyro.DAL.pdb
+\\peter\ZDrive\00007717\Desktop\Jyro-ready\Jyro.DAL\bin\Debug\System.Data.SqlServerCe.dll
+\\peter\ZDrive\00007717\Desktop\Jyro-ready\Jyro.DAL\obj\Debug\Jyro.DAL.csprojAssemblyReference.cache
+\\peter\ZDrive\00007717\Desktop\Jyro-ready\Jyro.DAL\obj\Debug\Jyro.DAL.csproj.CoreCompileInputs.cache
+\\peter\ZDrive\00007717\Desktop\Jyro-ready\Jyro.DAL\obj\Debug\Jyro.DAL.csproj.CopyComplete
+\\peter\ZDrive\00007717\Desktop\Jyro-ready\Jyro.DAL\obj\Debug\Jyro.DAL.dll
+\\peter\ZDrive\00007717\Desktop\Jyro-ready\Jyro.DAL\obj\Debug\Jyro.DAL.pdb

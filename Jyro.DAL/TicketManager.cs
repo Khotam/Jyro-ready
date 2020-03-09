@@ -10,14 +10,18 @@ using System.Data.SqlServerCe;
 
 namespace Jyro.DAL
 {
-    public class TicketManager : DbManager
+    // Class for managing Tickets which inherits from DbManager
+    public class TicketManager : DbManager 
     {
-
+        // Method for inserting tickets to the database
         public void Create(Ticket t)
         {
+            // Assigning Connection which is inherited from DbManager to connection variable
             var connection = Connection;
+            // try / catch for showing error messages in case of error occurs
             try
             {
+                /// SQL statement for inserting data to the ti_ticket table
                 var sql = $@"
 INSERT INTO ti_ticket (ti_summary_7717, ti_description_7717, ti_estimation_7717, ti_priority_7717, ti_status_7717, ti_sprint_id_7717) 
 VALUES('{t.Summary}', '{t.Description}', {t.Estimation}, '{(int)t.Priority}', '{(int)t.Status}', '')";
@@ -31,6 +35,7 @@ VALUES('{t.Summary}', '{t.Description}', {t.Estimation}, '{(int)t.Priority}', '{
             }
             finally
             {
+                // Closing connection if not closed
                 if (connection.State != ConnectionState.Closed)
                 {
                     connection.Close();
@@ -39,11 +44,15 @@ VALUES('{t.Summary}', '{t.Description}', {t.Estimation}, '{(int)t.Priority}', '{
             }
         }
 
+        // Method for updating tickets in the database
         public void Update(Ticket t)
         {
+            // Assigning Connection which is inherited from DbManager to connection variable
             var connection = Connection;
+            // try / catch for showing error messages in case of error occurs
             try
             {
+                /// SQL statement for updating data in the ti_ticket table
                 var sql = $@"
 UPDATE ti_ticket SET 
     ti_summary_7717 = '{t.Summary}', 
@@ -62,6 +71,7 @@ WHERE ti_id_7717 ={t.Id}";
             }
             finally
             {
+                // Closing connection if not closed
                 if (connection.State != ConnectionState.Closed)
                 {
                     connection.Close();
@@ -71,12 +81,15 @@ WHERE ti_id_7717 ={t.Id}";
         }
 
 
-
+        // Method for deleting tickets from the database
         public void Delete(int id)
         {
+            // Assigning Connection which is inherited from DbManager to connection variable
             var connection = Connection;
+            // try / catch for showing error messages in case of error occurs
             try
             {
+                /// SQL statement for deleting data from the ti_ticket table
                 var sql = $"DELETE FROM ti_ticket WHERE ti_id_7717 ={id}";
                 var command = new SqlCeCommand(sql, connection);
                 connection.Open();
@@ -88,6 +101,7 @@ WHERE ti_id_7717 ={t.Id}";
             }
             finally
             {
+                // Closing connection if not closed
                 if (connection.State != ConnectionState.Closed)
                 {
                     connection.Close();
@@ -95,11 +109,15 @@ WHERE ti_id_7717 ={t.Id}";
             }
         }
 
+        // Method for getting specific Ticket instance by its ID from the database
         public Ticket GetById(int id)
         {
+            // Assigning Connection which is inherited from DbManager to connection variable
             var connection = Connection;
+            // try / catch for showing error messages in case of error occurs
             try
             {
+                /// SQL statement for getting data by ID from the ti_ticket table
                 var sql = $@"
 SELECT ti_id_7717, ti_summary_7717, ti_description_7717, ti_estimation_7717, ti_priority_7717, ti_status_7717, ti_sprint_id_7717,
 FROM ti_ticket
@@ -119,6 +137,7 @@ WHERE ti_id_7717 = {id}";
             }
             finally
             {
+                // Closing connection if not closed
                 if (connection.State != ConnectionState.Closed)
                 {
                     connection.Close();
@@ -129,12 +148,16 @@ WHERE ti_id_7717 = {id}";
             return null;
         }
 
+        // Method for getting all Ticket instances from the database
         public List<Ticket> GetAll()
         {
+            // Assigning Connection which is inherited from DbManager to connection variable
             var connection = Connection;
             var result = new List<Ticket>();
+            // try / catch for showing error messages in case of error occurs
             try
             {
+                /// SQL statement for getting all Tickets instances from the ti_ticket table
                 var sql = "SELECT ti_id_7717, ti_summary_7717, ti_description_7717, ti_estimation_7717, ti_priority_7717, ti_status_7717, ti_sprint_id_7717 FROM ti_ticket";
                 var command = new SqlCeCommand(sql, connection);
                 connection.Open();
@@ -151,6 +174,7 @@ WHERE ti_id_7717 = {id}";
             }
             finally
             {
+                // Closing connection if not closed
                 if (connection.State != ConnectionState.Closed)
                 {
                     connection.Close();
@@ -160,12 +184,16 @@ WHERE ti_id_7717 = {id}";
             return result;
         }
 
+        // Method for getting all Ticket instances with status of Backlog from the database to use in SprintCreateForm.cs
         public List<Ticket> GetBackLogTickets()
         {
+            // Assigning Connection which is inherited from DbManager to connection variable
             var connection = Connection;
             var result = new List<Ticket>();
+            // try / catch for showing error messages in case of error occurs
             try
             {
+                /// SQL statement for getting all Tickets instances with status of Backlog from the ti_ticket table
                 var sql = $"SELECT ti_id_7717, ti_summary_7717, ti_description_7717, ti_estimation_7717, ti_priority_7717, ti_status_7717, ti_sprint_id_7717 FROM ti_ticket WHERE ti_status_7717 = {0}";
                 var command = new SqlCeCommand(sql, connection);
                 connection.Open();
@@ -182,6 +210,7 @@ WHERE ti_id_7717 = {id}";
             }
             finally
             {
+                // Closing connection if not closed
                 if (connection.State != ConnectionState.Closed)
                 {
                     connection.Close();
@@ -192,12 +221,16 @@ WHERE ti_id_7717 = {id}";
 
         }
 
-        public void SetTicketStatusAndSprint(Ticket t, int lastSprint)
+        // Method for setting the status of ticket and sprint
+        public void SetTicketStatusAndSprint(Ticket t, int lastSprintID)
         {
+            // Assigning Connection which is inherited from DbManager to connection variable
             var connection = Connection;
+            // try / catch for showing error messages in case of error occurs
             try
             {
-                var sql = $"UPDATE ti_ticket SET ti_status_7717=1, ti_sprint_id_7717={lastSprint} WHERE ti_id_7717={t.Id}";
+                /// SQL statement for updating specific Ticket instances in the ti_ticket table
+                var sql = $"UPDATE ti_ticket SET ti_status_7717=1, ti_sprint_id_7717={lastSprintID} WHERE ti_id_7717={t.Id}";
                 var command = new SqlCeCommand(sql, connection);
                 connection.Open();
                 var reader = command.ExecuteReader();
@@ -208,6 +241,7 @@ WHERE ti_id_7717 = {id}";
             }
             finally
             {
+                // Closing connection if not closed
                 if (connection.State != ConnectionState.Closed)
                 {
                     connection.Close();
@@ -215,11 +249,15 @@ WHERE ti_id_7717 = {id}";
             }
         }
 
-        public void ChangeTicketStatuses(int id)
+        // Method for changing Tickets status to done when complete button is clicked in SprintListForm.cs
+        public void AlterTicketStatuses(int id)
         {
+            // Assigning Connection which is inherited from DbManager to connection variable
             var connection = Connection;
+            // try / catch for showing error messages in case of error occurs
             try
             {
+                /// SQL statement for updating specific Ticket instances statuses in the ti_ticket table
                 var sql = $"UPDATE ti_ticket SET ti_status_7717=2 WHERE ti_sprint_id_7717={id}";
                 var command = new SqlCeCommand(sql, connection);
                 connection.Open();
@@ -231,6 +269,7 @@ WHERE ti_id_7717 = {id}";
             }
             finally
             {
+                // Closing connection if not closed
                 if (connection.State != ConnectionState.Closed)
                 {
                     connection.Close();
@@ -238,10 +277,12 @@ WHERE ti_id_7717 = {id}";
             }
         }
 
+        // Helper method for reading values taken from seminar code
         private Ticket GetFromReader(SqlCeDataReader reader)
         {
             var t = new Ticket
             {
+                // Converting values
                 Id = Convert.ToInt32(reader.GetValue(0)),
                 Summary = reader.GetValue(1).ToString(),
                 Description = reader.GetValue(2).ToString(),

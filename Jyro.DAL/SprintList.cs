@@ -8,6 +8,7 @@ namespace Jyro.DAL
 {
     public class SprintList
     {
+        // Method for getting all sprints from the database sp_sprint table
         public List<Sprint> GetAllSprints()
         {
             return new SprintManager().GetAll();

@@ -39,6 +39,7 @@ namespace Jyro
             Show();
         }
 
+        // Showing ticket values in controls
         private void ShowTicketInControls()
         {
             tbxSummary.Text = Ticket.Summary;
@@ -74,6 +75,7 @@ namespace Jyro
             }
         }
 
+        // Grabbing user input
         private void GrabUserInput()
         {
             Ticket.Summary = tbxSummary.Text;
@@ -109,11 +111,13 @@ namespace Jyro
             }
         }
 
+        // Event handler for Cancel button
         private void btnCancel_Click(object sender, EventArgs e)
         {
             Close();
         }
 
+        // Event handler for Save button
         private void btnSave_Click(object sender, EventArgs e)
         {
             try

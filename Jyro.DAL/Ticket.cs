@@ -6,13 +6,14 @@ using System.Threading.Tasks;
 
 namespace Jyro.DAL
 {
+    // Blueprint class for creating Ticket instances
     public class Ticket
     {
-        private string _summary; 
+        private string _summary; // Making properties private and using getter/setter to validate user input and for encapsulation
         private string _description; 
         private int _estimation; 
 
-        public enum Priorities
+        public enum Priorities // Creating enumerable Priorities for sorting Tickets by Priority in TicketListForm.cs
         {
             Showstopper,
             High,
@@ -20,7 +21,7 @@ namespace Jyro.DAL
             Low
         }
 
-        public enum Statuses
+        public enum Statuses // Creating enumerable Statuses for getting Tickets by Backlog status and changing their status in SprintCreateForm.cs
         {
             Backlog,
             Planned,
@@ -29,8 +30,8 @@ namespace Jyro.DAL
 
 
         public int Id { get; set; }
-
-        public string Summary 
+        // Validation for earlier created private properties _summary, _description, _estimation
+        public string Summary
         {
             get => _summary;
             set

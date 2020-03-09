@@ -18,12 +18,14 @@ namespace Jyro
             InitializeComponent();
         }
 
+        // Event handler for Form Load 
         private void TicketListForm_Load(object sender, EventArgs e)
         {
             MdiParent = MyForms.GetForm<ParentForm>();
             LoadData();
         }
 
+        // Method for clearing and showing the latest Sprints
         public void LoadData()
         {
             dgv.DataMember = "";
@@ -31,17 +33,21 @@ namespace Jyro
             dgv.DataSource = new TicketList().GetAllTickets();
         }
 
+        // Event handler for Refresh button
         private void btnRefresh_Click(object sender, EventArgs e)
         {
             LoadData();
         }
 
+        // Event handler for Sort button
         private void btnSort_Click(object sender, EventArgs e)
         {
+            // Validation for user experience
             if (cbxSort.SelectedIndex < 0)
                 MessageBox.Show("Select an attribute to sort by");
             else
             {
+                // Sorting logic
                 ByAttribute selectedAttribute;
                 if (cbxSort.SelectedIndex == 0)
                     selectedAttribute = ByAttribute.Priority;
@@ -55,9 +61,10 @@ namespace Jyro
 
         }
 
+        // Event handler for Search button
         private void btnSearch_Click(object sender, EventArgs e)
         {
-
+            // Validation for user experience
             if (nudSearch.Value <= 0)
                 MessageBox.Show("Must be a positive number");
             else
@@ -70,11 +77,14 @@ namespace Jyro
 
         }
 
+        // Event handler for add button
         private void btnAdd_Click(object sender, EventArgs e)
         {
             new TicketEditForm().CreateNewTicket();
         }
 
+
+        // Event handler for Update button
         private void btnUpdate_Click(object sender, EventArgs e)
         {
             if (dgv.SelectedRows.Count == 0)
@@ -86,6 +96,7 @@ namespace Jyro
             }
         }
 
+        // Event handler for Delete button
         private void btnDelete_Click(object sender, EventArgs e)
         {
             if (dgv.SelectedRows.Count == 0)
